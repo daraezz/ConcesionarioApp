@@ -15,13 +15,14 @@ public class ConcesionarioApp {
         boolean salir = false; // Condicion de salida bucle
         int opcion; // Pedir numero consola
         // Definimos la lista fuera del ciclo while para que no este creando y eliminando
-        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        // ArryaList <Objecto tipo Vehiculo> nombre  
+        ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
 
         while (!salir) {
             mostrarMenu();
             opcion = pedirNumeroTeclado(consola);
             try {
-                salir = ejecutarPrograma(opcion, consola, vehiculos);
+                salir = ejecutarPrograma(opcion, consola, listaVehiculos);
             } catch (Exception ex) {
                 System.out.println("Error " + ex.getMessage());
             }
@@ -58,15 +59,15 @@ public class ConcesionarioApp {
      * @return Devuelve un boolean si el usuario desea salir del programa
      * mientras tanto se ejecuta
      */
-    private static boolean ejecutarPrograma(int opcion, Scanner consola, List<Vehiculo> vehiculos) {
+    private static boolean ejecutarPrograma(int opcion, Scanner consola, List<Vehiculo> listaVehiculos) {
         boolean salir = false;
 
         switch (opcion) {
             case 1 -> {
-                agregarVehiculo(consola, vehiculos);
+                agregarVehiculo(consola, listaVehiculos);
                 break;
             }case 2 -> {
-                mostrarVehiculos(vehiculos);
+                mostrarVehiculos(listaVehiculos);
                 break;
             }case 3 -> {
                 System.out.println("Fin programa");
@@ -76,7 +77,7 @@ public class ConcesionarioApp {
         return salir;
     }
 
-    private static void agregarVehiculo(Scanner consola, List<Vehiculo> vehiculos) {
+    private static void agregarVehiculo(Scanner consola, List<Vehiculo> listaVehiculos) {
         // Creamos variables
         String tipoVehiculo, marca, modelo, color;
         double precio = 0;
@@ -96,11 +97,11 @@ public class ConcesionarioApp {
         }
 
         Vehiculo vehiculo = new Vehiculo(tipoVehiculo, marca, modelo, color, precio);
-        vehiculos.add(vehiculo); // Nos sirve para agregar un nuevo objeto de tipo persona a nuestra lista
-        System.out.println("Tu concesionario tiene: " + vehiculos.size() + " elementos");
+        listaVehiculos.add(vehiculo); // Nos sirve para agregar un nuevo objeto de tipo persona a nuestra lista
+        System.out.println("Tu concesionario tiene: " + listaVehiculos.size() + " elementos");
     }
     
-    private static void mostrarVehiculos(List<Vehiculo> vehiculos){
-        System.out.println(vehiculos);
+    private static void mostrarVehiculos(List<Vehiculo> listaVehiculos){
+        System.out.println(listaVehiculos);
     }
 }
