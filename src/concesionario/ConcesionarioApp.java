@@ -66,34 +66,39 @@ public class ConcesionarioApp {
             case 1 -> {
                 agregarVehiculo(consola, listaVehiculos);
                 break;
-            }case 2 -> {
+            }
+            case 2 -> {
                 mostrarVehiculos(listaVehiculos);
                 break;
-            }case 3 -> {
+            }
+            case 3 -> {
                 System.out.println("Fin programa");
                 salir = true;
+                break;
             }
+            default ->
+                System.out.println("Opcion erronea ");
         }
         return salir;
     }
 
     private static void agregarVehiculo(Scanner consola, List<Vehiculo> listaVehiculos) {
         // Creamos variables antes ya que si no en el catch salta error de no estar inicializadas
-        String tipoVehiculo, marca, modelo, color;
+        String tipoVehiculo = "", marca = "", modelo = "", color = "";
         double precio = 0;
-        
+
         System.out.println("Introduce el tipo de vehiculo - Ej: (Coche, Moto, Camion)");
-        tipoVehiculo = consola.nextLine();
+        tipoVehiculo = comprobarString(tipoVehiculo, consola);
         System.out.println("Introduce la marca del vehiculo - Ej: (Volkswagen, Seat, Audi)");
-        marca = consola.nextLine();
+        marca = comprobarString(marca, consola);
         System.out.println("Introduce el modelo del vehiculo - Ej: (Golf, Leon, a3)");
-        modelo = consola.nextLine();
+        modelo = consola.nextLine(); // No se comprueba en esta variable ya que hay marcas con numeros rs6
         System.out.println("Introduce el color del vehiculo - Ej: (Rojo , Azul, Gris)");
-        color = consola.nextLine();
+        color = comprobarString(color, consola);
         try {
-            System.out.println("Introduce el precio del vehiculo - Ej: (45000€ - 60550€)");
+            System.out.println("Introduce el precio del vehiculo - Ej: (45000€)");
             precio = Double.parseDouble(consola.nextLine());
-        }catch(NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             System.out.println("Error has introducido valores incorrectos: " + ex.getMessage());
         }
 
@@ -102,7 +107,35 @@ public class ConcesionarioApp {
         System.out.println("Tu concesionario tiene: " + listaVehiculos.size() + " elementos");
     }
     
-    private static void mostrarVehiculos(List<Vehiculo> listaVehiculos){
+    /**
+     * Metodo que sirve para mostrar la lista de los vehiculos
+     * @param listaVehiculos Devuelve la lista de los vehiculos
+     */
+
+    private static void mostrarVehiculos(List<Vehiculo> listaVehiculos) {
         System.out.println(listaVehiculos);
+    }
+
+    /**
+     * Metodo que comprueba que no insertes numeros
+     * @param texto Recibe la variable
+     * @param consola Recibe la clase Scanner para llamarla dentro de este metodo
+     * @return Devuelve el texto correctamente controlado
+     */
+    
+    private static String comprobarString(String texto, Scanner consola) {
+        boolean encontrado = false;
+        texto = consola.nextLine();
+
+        while (!encontrado) {
+            if (texto.matches("^[a-zA-z ]*$")) {
+                encontrado = true;
+            } else {
+                encontrado = false;
+                System.out.print("No se admiten valores numericos: ");
+                texto = consola.nextLine();
+            }
+        }
+        return texto;
     }
 }
