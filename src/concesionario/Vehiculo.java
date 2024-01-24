@@ -93,6 +93,6 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "{" + "id= " + id + ", tipoVehiculo= " + tipoVehiculo + ", marca= " + marca + ", modelo= " + modelo + ", color =" + color + ", precio= " + precio + '}';
+        return "\n{" + "id= " + id + ", tipoVehiculo= " + tipoVehiculo + ", marca= " + marca + ", modelo= " + modelo + ", color= " + color + ", precio= " + precio + '}';
     }
 }
