@@ -20,8 +20,8 @@ public class ConcesionarioApp {
 
         while (!salir) {
             mostrarMenu();
-            opcion = pedirNumeroTeclado(consola);
             try {
+                opcion = pedirNumeroTeclado(consola);
                 salir = ejecutarPrograma(opcion, consola, listaVehiculos);
             } catch (Exception ex) {
                 System.out.println("Error " + ex.getMessage());
@@ -78,9 +78,10 @@ public class ConcesionarioApp {
     }
 
     private static void agregarVehiculo(Scanner consola, List<Vehiculo> listaVehiculos) {
-        // Creamos variables
+        // Creamos variables antes ya que si no en el catch salta error de no estar inicializadas
         String tipoVehiculo, marca, modelo, color;
         double precio = 0;
+        
         System.out.println("Introduce el tipo de vehiculo - Ej: (Coche, Moto, Camion)");
         tipoVehiculo = consola.nextLine();
         System.out.println("Introduce la marca del vehiculo - Ej: (Volkswagen, Seat, Audi)");
