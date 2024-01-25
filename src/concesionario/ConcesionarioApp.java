@@ -54,7 +54,6 @@ public class ConcesionarioApp {
 
     /**
      * Metodo que se encargar de ejecutar todo nuestro programa
-     *
      * @param opcion Recibe la opcion insertada por el usuario
      * @return Devuelve un boolean si el usuario desea salir del programa
      * mientras tanto se ejecuta
@@ -81,6 +80,12 @@ public class ConcesionarioApp {
         }
         return salir;
     }
+    
+    /**
+     * Metodo que nos sirve para agregar un nuevo vehiculo
+     * @param consola Recibe la clase Scanner
+     * @param listaVehiculos Recibe la lista de vehiuclos
+     */
 
     private static void agregarVehiculo(Scanner consola, List<Vehiculo> listaVehiculos) {
         // Creamos variables antes ya que si no en el catch salta error de no estar inicializadas
@@ -95,6 +100,7 @@ public class ConcesionarioApp {
         modelo = consola.nextLine(); // No se comprueba en esta variable ya que hay marcas con numeros rs6
         System.out.println("Introduce el color del vehiculo - Ej: (Rojo , Azul, Gris)");
         color = comprobarString(color, consola);
+        
         try {
             System.out.println("Introduce el precio del vehiculo - Ej: (45000€)");
             precio = Double.parseDouble(consola.nextLine());
@@ -106,12 +112,11 @@ public class ConcesionarioApp {
         listaVehiculos.add(vehiculo); // Nos sirve para agregar un nuevo objeto de tipo persona a nuestra lista
         System.out.println("Tu concesionario tiene: " + listaVehiculos.size() + " elementos");
     }
-    
+
     /**
      * Metodo que sirve para mostrar la lista de los vehiculos
      * @param listaVehiculos Devuelve la lista de los vehiculos
      */
-
     private static void mostrarVehiculos(List<Vehiculo> listaVehiculos) {
         System.out.println(listaVehiculos);
     }
@@ -119,10 +124,10 @@ public class ConcesionarioApp {
     /**
      * Metodo que comprueba que no insertes numeros
      * @param texto Recibe la variable
-     * @param consola Recibe la clase Scanner para llamarla dentro de este metodo
+     * @param consola Recibe la clase Scanner para llamarla dentro de este
+     * metodo
      * @return Devuelve el texto correctamente controlado
      */
-    
     private static String comprobarString(String texto, Scanner consola) {
         boolean encontrado = false;
         texto = consola.nextLine();
